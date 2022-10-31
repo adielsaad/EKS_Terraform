@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+
+
+  <meta charset="UTF-8">
+  <title>Seven Days Forecast</title>
+  <style>
+        body {
+            opacity: 0;
+            transition: opacity 5s;
+            background-image: url("https://images.pexels.com/photos/1227513/pexels-photo-1227513.jpeg?cs=srgb&dl=pexels-oleksandr-pidvalnyi-1227513.jpg&fm=jpg")
+
+        }
+  </style>
+</head>
+<body onload="document.body.style.opacity='1'">
+<nav style="opacity: 30%;" class="navbar navbar-light bg-light">
+  <a class="navbar-brand" style="padding-left: 10px; font-weight: bold; " href="/"><i class="fa-solid fa-house-user"></i>  Home</a>
+</nav>
+
+<section class="vh-100">
+  <div class="container py-5 h-100">
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="d-flex justify-content-between">
+          {% for i in range(0,7) %}
+        <div class="card" style="color: grey; border-radius: 35px; margin: 0 10px 0 10px; height: 300px; width:200px; ">
+          <div class="card-body p-4">
+
+            <div class="d-flex">
+              <h6 class="flex-grow-1" style="text-align: center">{{ user_input }}</h6>
+            </div>
+
+            {% if data[i]['max'] > 25 %}
+            <!-- sun -->
+            <div style="text-align: center; margin-top: 5px;" >
+                <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
+                     width="50px">
+            </div>
+            {% elif data[i]['max'] < 25 and data[i]['max'] > 10 %}
+
+            <!-- middle -->
+            <div style="text-align: center; margin-top: 5px;" >
+                <img src="https://cdn-icons-png.flaticon.com/512/4064/4064269.png"
+                     width="50px">
+            </div>
+            <!-- rain-->
+            {% else %}
+            <div style="text-align: center; margin-top: 5px;" >
+                <img src="https://cdn-icons.flaticon.com/png/512/3262/premium/3262915.png?token=exp=1656931337~hmac=f7d5d6d3311185d3a190758a4821b12e"
+                     width="50px">
+            </div>
+            {% endif %}
+
+            <div class="d-flex flex-column text-center mt-5 mb-4">
+              <h6 class="display-4 mb-0 font-weight-bold" style="font-size: 20px; color: #1C2331;"> {{ days_name[i] }} </h6>
+              <span class="small" style="color: #868B94">{{ date[i] }}</span>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1" style="font-size: 0.75rem; text-align: center;">
+                <div><i class="fa-solid fa-temperature-arrow-down" style="color: #868B94;"></i> <span class="ms-1"> Min: {{ data[i]['min'] }}°C</span></div>
+                <div><i class="fa-solid fa-temperature-arrow-up" style="color: #868B94;"></i> <span class="ms-1"> Max: {{ data[i]['max'] }}°C</span>
+                </div>
+                <div><i class="fa-solid fa-moon" style="color: #868B94;"></i> <span class="ms-1"> Night: {{ data[i]['night'] }}°C</span>
+                </div>
+                <div><i class="fa-solid fa-droplet" style="color: #868B94;"></i> <span class="ms-1"> Humidity: {{ data[i]['humidity'] }}% </span>
+                </div>
+              </div>
+
+
+            </div>`
+
+          </div>
+        </div>
+        {% endfor %}
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>

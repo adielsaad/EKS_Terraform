@@ -1,0 +1,18 @@
+version: '3'
+services:
+    python_app:
+        image: weather_image
+        networks:
+          - weather_app_network
+    nginx:
+        container_name: nginx
+        image: nginx_image
+        ports:
+          - 80:80
+        networks: 
+          - host
+          - weather_app_network
+networks:
+    weather_app_network: {} 
+    host: {}
+
